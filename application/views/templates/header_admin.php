@@ -123,9 +123,9 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url(); ?>administrator/products">
-            <i class="fas fa-fw fa-box-open"></i>
-            <span>Produk</span></a
+          <a class="nav-link" href="<?= base_url(); ?>administrator/projects">
+            <i class="fas fa-fw fa-paint-brush"></i>
+            <span>Projek</span></a
           >
         </li>
 

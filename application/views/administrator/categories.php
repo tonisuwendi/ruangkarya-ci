@@ -65,7 +65,7 @@
 function btnDelete(id){
 	swal({
 		title: "Yakin ingin menghapus kategori?",
-		text: "Apakah kamu yakin ingin menghapus kategori ini? Semua produk dengan kategori ini akan ikut terhapus",
+		text: "Apakah kamu yakin ingin menghapus kategori ini? Semua projek dengan kategori ini akan ikut terhapus",
 		icon: "warning",
 		buttons: true,
 		dangerMode: true,

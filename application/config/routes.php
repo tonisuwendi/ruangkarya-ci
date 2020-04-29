@@ -7,3 +7,4 @@ $route['translate_uri_dashes'] = FALSE;
 $route['administrator/categories/add'] = 'administrator/add_categories';
 $route['administrator/category/(:num)'] = 'administrator/edit_categories/$1';
 $route['administrator/category/(:num)/delete'] = 'administrator/delete_category/$1';
+$route['administrator/projects/add'] = 'administrator/add_projects';

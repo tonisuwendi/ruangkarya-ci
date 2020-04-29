@@ -31,7 +31,7 @@ class Administrator extends CI_Controller {
     public function add_categories(){
         $this->form_validation->set_rules('name', 'Nama', 'required', ['required' => 'Nama wajib diisi']);
         if($this->form_validation->run() == false){
-            $data['title'] = 'Tambah Halaman - Admin Panel';
+            $data['title'] = 'Tambah Kategori - Admin Panel';
             $this->load->view('templates/header_admin', $data);
             $this->load->view('administrator/add_categories', $data);
             $this->load->view('templates/footer_admin');
@@ -50,7 +50,7 @@ class Administrator extends CI_Controller {
     public function edit_categories($id){
         $this->form_validation->set_rules('name', 'Nama', 'required', ['required' => 'Nama wajib diisi']);
         if($this->form_validation->run() == false){
-            $data['title'] = 'Tambah Halaman - Admin Panel';
+            $data['title'] = 'Edit Kategori - Admin Panel';
             $data['category'] = $this->Categories_model->getCategoryById($id);
             $this->load->view('templates/header_admin', $data);
             $this->load->view('administrator/edit_categories', $data);
@@ -77,6 +77,36 @@ class Administrator extends CI_Controller {
             });
             </script>");
         redirect(base_url() . 'administrator/categories');
+    }
+
+    // projects
+    public function projects(){
+        $data['title'] = 'Projek - Admin Panel';
+        $this->load->view('templates/header_admin', $data);
+        $this->load->view('administrator/projects', $data);
+        $this->load->view('templates/footer_admin');
+    }
+
+    public function add_projects(){
+        $this->form_validation->set_rules('name', 'Nama', 'required', ['required' => 'Nama wajib diisi']);
+        $this->form_validation->set_rules('category', 'Kategori', 'required', ['required' => 'Kategori wajib diisi']);
+        $this->form_validation->set_rules('file', 'File', 'required', ['required' => 'File wajib diisi']);
+        if($this->form_validation->run() == false){
+            $data['title'] = 'Tambah Projek - Admin Panel';
+            $data['categories'] = $this->Categories_model->getCategories();
+            $this->load->view('templates/header_admin', $data);
+            $this->load->view('administrator/add_projects', $data);
+            $this->load->view('templates/footer_admin');
+        }else{
+            $this->Categories_model->insertCategory();
+            $this->session->set_flashdata('upload', "<script>
+                swal({
+                text: 'Kategori berhasil dibuat',
+                icon: 'success'
+                });
+                </script>");
+            redirect(base_url() . 'administrator/categories');
+        }
     }
 
     public function logout(){

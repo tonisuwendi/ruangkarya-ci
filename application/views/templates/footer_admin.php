@@ -39,29 +39,6 @@
 <script src="<?= base_url(); ?>assets/vendor/chart.js/Chart.min.js"></script>
 <script src="<?= base_url(); ?>assets/select2-4.0.6-rc.1/dist/js/select2.min.js"></script>
 
-<script>
-
-ClassicEditor
-.create( document.querySelector( '#description' ) )
-.then( editor => {
-        console.log( editor );
-} )
-.catch( error => {
-        console.error( error );
-} );
-
-$("#settingSelectRegency").select2({
-    placeholder: 'Pilih Kabupaten/Kota',
-    language: 'id'
-})
-
-$("#sendMailTo").select2({
-    placeholder: 'Pilih Tujuan',
-    language: 'id'
-})
-
-</script>
-
 </body>
 
 </html>
