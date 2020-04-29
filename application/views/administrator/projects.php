@@ -15,7 +15,50 @@
 			>
 		</div>
 		<div class="card-body">
-			
+			<?php if($projects->num_rows() > 0){ ?>
+				<div class="table-responsive">
+				<table
+					class="table table-bordered"
+					id="dataTable"
+					width="100%"
+					cellspacing="0"
+				>
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>File</th>
+							<th>Nama</th>
+							<th>Kategori</th>
+							<th>Tanggal Input</th>
+                            <th>Aksi</th>
+						</tr>
+					</thead>
+					<tbody class="data-content">
+					<?php $no=1; foreach($projects->result_array() as $p): ?>
+                        <tr>
+							<td><?= $no; ?></td>
+							<?php if($p['type'] == 3){ ?>
+							<td><a href="<?= $p['file']; ?>" target="_blank" class="text-primary">Lihat Video</a></td>
+							<?php }else{ ?>
+								<td><a href="<?= base_url(); ?>assets/images/projects/<?= $p['file']; ?>" target="_blank" class="text-primary">Lihat Gambar</a></td>
+							<?php } ?>
+							<td><?= $p['pName']; ?></td>
+							<td><?= $p['name']; ?></td>
+							<td><?= $p['date_input']; ?></td>
+							<td style="width: 100px">
+								<a href="<?= base_url(); ?>administrator/category/<?= $p['pId']; ?>" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
+								<button onclick="btnDelete('<?= $p['pId']; ?>')" class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
+							</td>
+						</tr>
+					<?php $no++; endforeach; ?>
+					</tbody>
+				</table>
+			</div>
+			<?php }else{ ?>
+				<div class="alert alert-warning">
+					Upss. Belum ada kategori. Yuk tambah kategori sekarang.
+				</div>
+			<?php } ?>
 		</div>
 	</div>
 </div>

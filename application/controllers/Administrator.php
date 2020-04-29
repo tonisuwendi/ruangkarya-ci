@@ -82,6 +82,7 @@ class Administrator extends CI_Controller {
     // projects
     public function projects(){
         $data['title'] = 'Projek - Admin Panel';
+        $data['projects'] = $this->Projects_model->getProjects();
         $this->load->view('templates/header_admin', $data);
         $this->load->view('administrator/projects', $data);
         $this->load->view('templates/footer_admin');
@@ -90,7 +91,6 @@ class Administrator extends CI_Controller {
     public function add_projects(){
         $this->form_validation->set_rules('name', 'Nama', 'required', ['required' => 'Nama wajib diisi']);
         $this->form_validation->set_rules('category', 'Kategori', 'required', ['required' => 'Kategori wajib diisi']);
-        $this->form_validation->set_rules('file', 'File', 'required', ['required' => 'File wajib diisi']);
         if($this->form_validation->run() == false){
             $data['title'] = 'Tambah Projek - Admin Panel';
             $data['categories'] = $this->Categories_model->getCategories();
@@ -98,14 +98,57 @@ class Administrator extends CI_Controller {
             $this->load->view('administrator/add_projects', $data);
             $this->load->view('templates/footer_admin');
         }else{
-            $this->Categories_model->insertCategory();
-            $this->session->set_flashdata('upload', "<script>
+            $category = $this->input->post('category');
+            $dbCat = $this->db->get_where('categories', ['id' => $category])->row_array();
+            if($dbCat['type'] == 1){
+                $data = array();
+                $upload = $this->Projects_model->uploadFile('1');
+                if($upload['result'] == 'success'){
+                    $nameFile = $upload['file']['file_name'];
+                    $this->Projects_model->insertProjects($nameFile);
+                    $this->session->set_flashdata('upload', "<script>
+                        swal({
+                        text: 'Projek berhasil ditambahkan',
+                        icon: 'success'
+                        });
+                        </script>");
+                        redirect(base_url() . 'administrator/projects');
+                }else{
+                    $this->session->set_flashdata('failed', "<div class='alert alert-danger' role='alert'>
+                    Gagal menambah projek, pastikan file berukuran maksimal 2mb dan berformat png, jpg, jpeg. Silakan ulangi lagi.
+                  </div>");
+                    redirect(base_url() . 'administrator/projects/add');
+                }
+            }else if($dbCat['type'] == 2){
+                $data = array();
+                $upload = $this->Projects_model->uploadFile('2');
+                if($upload['result'] == 'success'){
+                    $nameFile = $upload['file']['file_name'];
+                    $this->Projects_model->insertProjects($nameFile);
+                    $this->session->set_flashdata('upload', "<script>
+                        swal({
+                        text: 'Projek berhasil ditambahkan',
+                        icon: 'success'
+                        });
+                        </script>");
+                        redirect(base_url() . 'administrator/projects');
+                }else{
+                    $this->session->set_flashdata('failed', "<div class='alert alert-danger' role='alert'>
+                    Gagal menambah projek, pastikan file berukuran maksimal 2mb dan berformat gif. Silakan ulangi lagi.
+                  </div>");
+                    redirect(base_url() . 'administrator/projects/add');
+                }
+            }else if($dbCat['type'] == 3){
+                $nameFile = $this->input->post('file3');
+                $this->Projects_model->insertProjects($nameFile);
+                $this->session->set_flashdata('upload', "<script>
                 swal({
-                text: 'Kategori berhasil dibuat',
+                text: 'Projek berhasil ditambahkan',
                 icon: 'success'
                 });
                 </script>");
-            redirect(base_url() . 'administrator/categories');
+                redirect(base_url() . 'administrator/projects');
+            }
         }
     }
 
