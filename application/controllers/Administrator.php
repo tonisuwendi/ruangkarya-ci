@@ -67,6 +67,18 @@ class Administrator extends CI_Controller {
         }
     }
 
+    public function delete_category($id){
+        $this->db->where('id', $id);
+        $this->db->delete('categories');
+        $this->session->set_flashdata('upload', "<script>
+            swal({
+            text: 'Kategori berhasil dihapus',
+            icon: 'success'
+            });
+            </script>");
+        redirect(base_url() . 'administrator/categories');
+    }
+
     public function logout(){
         session_unset();
         session_destroy();

@@ -45,7 +45,7 @@
 							<?php } ?>
 							<td style="width: 100px">
 								<a href="<?= base_url(); ?>administrator/category/<?= $c['id']; ?>" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
-								<a href="<?= base_url(); ?>administrator/category/<?= $c['id']; ?>/delete" class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></a>
+								<button onclick="btnDelete('<?= $c['id']; ?>')" class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
 							</td>
 						</tr>
 					<?php $no++; endforeach; ?>
@@ -61,3 +61,19 @@
 	</div>
 </div>
 <!-- /.container-fluid -->
+<script>
+function btnDelete(id){
+	swal({
+		title: "Yakin ingin menghapus kategori?",
+		text: "Apakah kamu yakin ingin menghapus kategori ini? Semua produk dengan kategori ini akan ikut terhapus",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+		})
+		.then((willDelete) => {
+		if (willDelete) {
+			document.location = `<?= base_url(); ?>administrator/category/${id}/delete`
+		}
+	});
+}
+</script>
