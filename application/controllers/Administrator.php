@@ -70,6 +70,8 @@ class Administrator extends CI_Controller {
     public function delete_category($id){
         $this->db->where('id', $id);
         $this->db->delete('categories');
+        $this->db->where('category', $id);
+        $this->db->delete('projects');
         $this->session->set_flashdata('upload', "<script>
             swal({
             text: 'Kategori berhasil dihapus',
@@ -150,6 +152,105 @@ class Administrator extends CI_Controller {
                 redirect(base_url() . 'administrator/projects');
             }
         }
+    }
+
+    public function edit_projects($id){
+        $this->form_validation->set_rules('name', 'Nama', 'required', ['required' => 'Nama wajib diisi']);
+        if($this->form_validation->run() == false){
+            $data['title'] = 'Edit Projek - Admin Panel';
+            $data['categories'] = $this->Categories_model->getCategories();
+            $data['project'] = $this->Projects_model->getProjectById($id);
+            $this->load->view('templates/header_admin', $data);
+            $this->load->view('administrator/edit_projects', $data);
+            $this->load->view('templates/footer_admin');
+        }else{
+            $dt = $this->Projects_model->getProjectById($id);
+            if($dt['type'] == 1){
+                if($_FILES['file1']['name'] != ""){
+                    $data = array();
+                    $upload = $this->Projects_model->uploadFile('1');
+                    if($upload['result'] == 'success'){
+                        $nameFile = $upload['file']['file_name'];
+                        $this->Projects_model->updateProject($nameFile, $id);
+                        $this->session->set_flashdata('upload', "<script>
+                            swal({
+                            text: 'Projek berhasil diubah',
+                            icon: 'success'
+                            });
+                            </script>");
+                            redirect(base_url() . 'administrator/projects');
+                    }else{
+                        $this->session->set_flashdata('failed', "<div class='alert alert-danger' role='alert'>
+                        Gagal mengubah projek, pastikan file berukuran maksimal 2mb dan berformat png, jpg, jpeg. Silakan ulangi lagi.
+                    </div>");
+                    redirect(base_url() . 'administrator/project/'.$id);
+                    }
+                }else{
+                    $nameFile = $dt['file'];
+                    $this->Projects_model->updateProject($nameFile, $id);
+                    $this->session->set_flashdata('upload', "<script>
+                        swal({
+                        text: 'Projek berhasil diubah',
+                        icon: 'success'
+                        });
+                        </script>");
+                        redirect(base_url() . 'administrator/projects');
+                }
+            }else if($dt['type'] == 2){
+                if($_FILES['file2']['name'] != ""){
+                    $data = array();
+                    $upload = $this->Projects_model->uploadFile('2');
+                    if($upload['result'] == 'success'){
+                        $nameFile = $upload['file']['file_name'];
+                        $this->Projects_model->updateProject($nameFile, $id);
+                        $this->session->set_flashdata('upload', "<script>
+                            swal({
+                            text: 'Projek berhasil diubah',
+                            icon: 'success'
+                            });
+                            </script>");
+                            redirect(base_url() . 'administrator/projects');
+                    }else{
+                        $this->session->set_flashdata('failed', "<div class='alert alert-danger' role='alert'>
+                        Gagal mengubah projek, pastikan file berukuran maksimal 2mb dan berformat gif. Silakan ulangi lagi.
+                    </div>");
+                        redirect(base_url() . 'administrator/project/'.$id);
+                    }
+                }else{
+                    $nameFile = $dt['file'];
+                    $this->Projects_model->updateProject($nameFile, $id);
+                    $this->session->set_flashdata('upload', "<script>
+                        swal({
+                        text: 'Projek berhasil diubah',
+                        icon: 'success'
+                        });
+                        </script>");
+                        redirect(base_url() . 'administrator/projects');
+                }
+            }else if($dt['type'] == 3){
+                $nameFile = $this->input->post('file3');
+                $this->Projects_model->updateProject($nameFile, $id);
+                $this->session->set_flashdata('upload', "<script>
+                swal({
+                text: 'Projek berhasil diubah',
+                icon: 'success'
+                });
+                </script>");
+                redirect(base_url() . 'administrator/projects');
+            }
+        }
+    }
+
+    public function delete_project($id){
+        $this->db->where('id', $id);
+        $this->db->delete('projects');
+        $this->session->set_flashdata('upload', "<script>
+            swal({
+            text: 'Projek berhasil dihapus',
+            icon: 'success'
+            });
+            </script>");
+        redirect(base_url() . 'administrator/projects');
     }
 
     public function logout(){

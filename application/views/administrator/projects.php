@@ -46,7 +46,7 @@
 							<td><?= $p['name']; ?></td>
 							<td><?= $p['date_input']; ?></td>
 							<td style="width: 100px">
-								<a href="<?= base_url(); ?>administrator/category/<?= $p['pId']; ?>" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
+								<a href="<?= base_url(); ?>administrator/project/<?= $p['pId']; ?>" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
 								<button onclick="btnDelete('<?= $p['pId']; ?>')" class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
 							</td>
 						</tr>
@@ -66,15 +66,15 @@
 <script>
 function btnDelete(id){
 	swal({
-		title: "Yakin ingin menghapus kategori?",
-		text: "Apakah kamu yakin ingin menghapus kategori ini? Semua projek dengan kategori ini akan ikut terhapus",
+		title: "Ingin menghapus projek?",
+		text: "Apakah kamu yakin ingin menghapus projek ini? Projek yang dihapus tidak akan bisa dikembalikan lagi.",
 		icon: "warning",
 		buttons: true,
 		dangerMode: true,
 		})
 		.then((willDelete) => {
 		if (willDelete) {
-			document.location = `<?= base_url(); ?>administrator/category/${id}/delete`
+			document.location = `<?= base_url(); ?>administrator/project/${id}/delete`
 		}
 	});
 }

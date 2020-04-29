@@ -11,6 +11,15 @@ class Projects_model extends CI_Model {
         return $this->db->get();
     }
 
+    public function getProjectById($id){
+        $this->db->select("*, projects.name AS pName, projects.id AS pId");
+        $this->db->from("projects");
+        $this->db->join("categories", "projects.category=categories.id");
+        $this->db->order_by('projects.id', "desc");
+        $this->db->where('projects.id', $id);
+        return $this->db->get()->row_array(); 
+    }
+
     public function uploadFile($type){
         $config['upload_path'] = './assets/images/projects/';
         if($type == '1'){
@@ -54,6 +63,26 @@ class Projects_model extends CI_Model {
             "date_input" => $date
         ];
         $this->db->insert('projects', $data);
+    }
+
+    public function updateProject($nameFile, $id){
+        $name = $this->input->post('name');
+        $file = $nameFile;
+        function textToSlug($text='') {
+            $text = trim($text);
+            if (empty($text)) return '';
+            $text = preg_replace("/[^a-zA-Z0-9\-\s]+/", "", $text);
+            $text = strtolower(trim($text));
+            $text = str_replace(' ', '-', $text);
+            $text = $text_ori = preg_replace('/\-{2,}/', '-', $text);
+            return $text;
+        }
+        $data = [
+            "name" => $name,
+            "file" => $file
+        ];
+        $this->db->where('id', $id);
+        $this->db->update('projects', $data);
     }
 
 }
