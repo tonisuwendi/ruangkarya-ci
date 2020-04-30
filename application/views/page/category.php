@@ -5,7 +5,7 @@
 </div>
 
 <div class="wrapper">
-    <h2 class="title">Projek Terbaru</h2>
+    <h2 class="title">Kategori <?= $data['name']; ?></h2>
     <?php if($projects->num_rows() > 0){ ?>
     <div class="div main">
         <?php foreach($projects->result_array() as $p): ?>
@@ -29,7 +29,7 @@
     </div>
     <br>
     <?php }else{ ?>
-        <div class="alert alert-warning">Belum ada projek</div>
+        <div class="alert alert-warning">Belum ada projek untuk kategori <?= $data['name']; ?></div>
     <?php } ?>
     <?= $this->pagination->create_links(); ?>
 </div>

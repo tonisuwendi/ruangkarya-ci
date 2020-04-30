@@ -10,6 +10,14 @@ class Projects_model extends CI_Model {
         return $this->db->get("projects", $number,$offset);
     }
 
+    public function getProjectsByCategory($number,$offset,$id){
+        $this->db->select("*, projects.name AS pName, projects.id AS pId");
+        $this->db->join("categories", "projects.category=categories.id");
+        $this->db->order_by('projects.id', "desc");
+        $this->db->where('projects.category', $id);
+        return $this->db->get("projects", $number,$offset);
+    }
+
     public function getProjectById($id){
         $this->db->select("*, projects.name AS pName, projects.id AS pId");
         $this->db->from("projects");
