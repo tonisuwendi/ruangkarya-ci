@@ -87,4 +87,9 @@ div.wrapper div.main div.item div.text span.category {
 	font-size: "Open Sans";
 	font-size: 11px;
 	padding: 2px 7px;
+	transition: 0.2s;
+}
+
+div.wrapper div.main div.item div.text span.category:hover {
+	background-color: rgb(8, 49, 173);
 }

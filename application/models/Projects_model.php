@@ -19,6 +19,21 @@ class Projects_model extends CI_Model {
         return $this->db->get()->row_array(); 
     }
 
+    public function getProjectBySlug($slug){
+        $this->db->select("*, projects.name AS pName, projects.id AS pId");
+        $this->db->from("projects");
+        $this->db->join("categories", "projects.category=categories.id");
+        $this->db->order_by('projects.id', "desc");
+        $this->db->where('projects.slug', $slug);
+        return $this->db->get()->row_array(); 
+    }
+
+    public function getAllProjectsNotSlug($slug){
+        $this->db->limit(7);
+        $this->db->where('projects.slug !=', $slug);
+        return $this->db->get("projects"); 
+    }
+
     public function uploadFile($type){
         $config['upload_path'] = './assets/images/projects/';
         if($type == '1'){
@@ -43,6 +58,7 @@ class Projects_model extends CI_Model {
         $name = $this->input->post('name');
         $category = $this->input->post('category');
         $file = $nameFile;
+        $description = $this->input->post('description');
         function textToSlug($text='') {
             $text = trim($text);
             if (empty($text)) return '';
@@ -58,6 +74,7 @@ class Projects_model extends CI_Model {
             "name" => $name,
             "category" => $category,
             "file" => $file,
+            "description" => $description,
             "slug" => $slug . '-' . rand(),
             "date_input" => $date
         ];
@@ -67,6 +84,7 @@ class Projects_model extends CI_Model {
     public function updateProject($nameFile, $id){
         $name = $this->input->post('name');
         $file = $nameFile;
+        $description = $this->input->post('description');
         function textToSlug($text='') {
             $text = trim($text);
             if (empty($text)) return '';
@@ -78,7 +96,8 @@ class Projects_model extends CI_Model {
         }
         $data = [
             "name" => $name,
-            "file" => $file
+            "file" => $file,
+            "description" => $description
         ];
         $this->db->where('id', $id);
         $this->db->update('projects', $data);

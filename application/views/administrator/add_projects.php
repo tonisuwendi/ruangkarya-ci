@@ -60,6 +60,13 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="description" class="col-sm-2 col-form-label">Deskripsi</label>
+                    <div class="col-sm-10">
+                        <textarea name="description" id="description" required class="form-control" rows="5"><?php echo set_value('name'); ?></textarea>
+                        <small class="text-danger"><?php echo form_error('description'); ?></small>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <div class="col-sm-10">
                     <button type="submit" class="btn btn-info btn-sm">Submit</button>
                     </div>
