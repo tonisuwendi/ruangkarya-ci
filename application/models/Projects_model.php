@@ -43,8 +43,12 @@ class Projects_model extends CI_Model {
     }
 
     public function uploadFile($type){
-        $config['upload_path'] = './assets/images/projects/';
-        if($type == '1'){
+        if($type == '5'){
+            $config['upload_path'] = './assets/images/bg/';
+        }else{
+            $config['upload_path'] = './assets/images/projects/';
+        }
+        if($type == '1' || $type == '5'){
             $config['allowed_types'] = 'jpg|png|jpeg';
         }else{
             $config['allowed_types'] = 'gif';

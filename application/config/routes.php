@@ -12,3 +12,5 @@ $route['administrator/category/(:num)/delete'] = 'administrator/delete_category/
 $route['administrator/projects/add'] = 'administrator/add_projects';
 $route['administrator/project/(:num)'] = 'administrator/edit_projects/$1';
 $route['administrator/project/(:num)/delete'] = 'administrator/delete_project/$1';
+$route['administrator/setting/banner'] = 'administrator/banner_setting';
+$route['administrator/setting/text'] = 'administrator/text_setting';

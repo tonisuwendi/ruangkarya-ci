@@ -14,7 +14,7 @@ $categories = $this->db->get('categories');
         <li class="nav-item active">
             <a class="nav-link" href="<?= base_url(); ?>">Beranda</a>
         </li>
-        <li class="nav-item dropdown active">
+        <li class="nav-item dropdown active ml-1">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Kategori
             </a>
@@ -23,12 +23,6 @@ $categories = $this->db->get('categories');
                 <a class="dropdown-item" href="<?= base_url(); ?>categories/<?= $c['id']; ?>"><?= $c['name']; ?></a>
             <?php endforeach; ?>
             </div>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="<?= base_url(); ?>about">Tentang</a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="<?= base_url(); ?>about">Kontak</a>
         </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

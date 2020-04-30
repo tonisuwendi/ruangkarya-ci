@@ -277,6 +277,80 @@ class Administrator extends CI_Controller {
         redirect(base_url() . 'administrator/projects');
     }
 
+    public function settings(){
+        $this->form_validation->set_rules('app_name', 'Nama', 'required', ['required' => 'Nama wajib diisi']);
+        if($this->form_validation->run() == false){
+            $data['title'] = 'Pengaturan - Admin Panel';
+            $data['setting'] = $this->db->get('settings')->row_array();
+            $this->load->view('templates/header_admin', $data);
+            $this->load->view('administrator/settings', $data);
+            $this->load->view('templates/footer_admin');
+        }else{
+            $name = $this->input->post('app_name');
+            $this->db->set('app_name', $name);
+            $this->db->update('settings');
+            $this->session->set_flashdata('upload', "<script>
+                swal({
+                text: 'Nama aplikasi berhasil diubah',
+                icon: 'success'
+                });
+                </script>");
+            redirect(base_url() . 'administrator/settings');
+        }
+    }
+
+    public function banner_setting(){
+        $data['title'] = 'Pengaturan - Admin Panel';
+        $data['setting'] = $this->db->get('settings')->row_array();
+        $this->load->view('templates/header_admin', $data);
+        $this->load->view('administrator/banner_setting', $data);
+        $this->load->view('templates/footer_admin');
+    }
+
+    public function upload_banner_setting(){
+        $data = array();
+        $upload = $this->Projects_model->uploadFile('5');
+        if($upload['result'] == 'success'){
+            $nameFile = $upload['file']['file_name'];
+            $this->db->set('banner', $nameFile);
+            $this->db->update('settings');
+            $this->session->set_flashdata('upload', "<script>
+                swal({
+                text: 'Banner berhasil diubah',
+                icon: 'success'
+                });
+                </script>");
+                redirect(base_url() . 'administrator/setting/banner');
+        }else{
+            $this->session->set_flashdata('failed', "<div class='alert alert-danger' role='alert'>
+            Gagal mengubah banner, pastikan file berukuran maksimal 2mb dan berformat jpg, jpeg, atau png. Silakan ulangi lagi.
+        </div>");
+            redirect(base_url() . 'administrator/setting/banner');
+        }
+    }
+
+    public function text_setting(){
+        $this->form_validation->set_rules('text', 'Teks', 'required', ['required' => 'Teks wajib diisi']);
+        if($this->form_validation->run() == false){
+            $data['title'] = 'Pengaturan - Admin Panel';
+            $data['setting'] = $this->db->get('settings')->row_array();
+            $this->load->view('templates/header_admin', $data);
+            $this->load->view('administrator/text_setting', $data);
+            $this->load->view('templates/footer_admin');
+        }else{
+            $text = $this->input->post('text');
+            $this->db->set('text', $text);
+            $this->db->update('settings');
+            $this->session->set_flashdata('upload', "<script>
+                swal({
+                text: 'Teks banner berhasil diubah',
+                icon: 'success'
+                });
+                </script>");
+            redirect(base_url() . 'administrator/setting/text');
+        }
+    }
+
     public function logout(){
         session_unset();
         session_destroy();
