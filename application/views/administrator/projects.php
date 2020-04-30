@@ -38,9 +38,9 @@
                         <tr>
 							<td><?= $no; ?></td>
 							<?php if($p['type'] == 3){ ?>
-							<td><a href="<?= $p['file']; ?>" target="_blank" class="text-primary">Lihat Video</a></td>
+							<td><iframe width="200" height="100" src="https://www.youtube.com/embed/<?= $p['file']; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
 							<?php }else{ ?>
-								<td><a href="<?= base_url(); ?>assets/images/projects/<?= $p['file']; ?>" target="_blank" class="text-primary">Lihat Gambar</a></td>
+								<td><img src="<?= base_url(); ?>assets/images/projects/<?= $p['file']; ?>" height="100"></td>
 							<?php } ?>
 							<td><?= $p['pName']; ?></td>
 							<td><?= $p['name']; ?></td>

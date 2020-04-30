@@ -3,12 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Projects_model extends CI_Model {
 
-    public function getProjects(){
+    public function getProjects($number,$offset){
         $this->db->select("*, projects.name AS pName, projects.id AS pId");
-        $this->db->from("projects");
         $this->db->join("categories", "projects.category=categories.id");
         $this->db->order_by('projects.id', "desc");
-        return $this->db->get();
+        return $this->db->get("projects", $number,$offset);
     }
 
     public function getProjectById($id){

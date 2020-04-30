@@ -56,7 +56,7 @@
                     <label for="file" class="col-sm-2 col-form-label">File Projek</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="file3" id="file">
-                        <small class="text-muted">Masukan link embedded</small>
+                        <small class="text-muted">Link youtube setelah tanda =. Cth: https://www.youtube.com/watch?v=<strong>mucs3GPVdgQ</strong></small>
                     </div>
                 </div>
                 <div class="form-group row">

@@ -15,8 +15,9 @@ div.banner h2 {
 }
 
 div.wrapper {
-	height: 1000px;
+	height: auto;
 	margin: auto;
+	margin-bottom: 50px;
 	margin-top: 40px;
 	width: 1100px;
 }
@@ -28,29 +29,33 @@ div.wrapper h2.title {
 }
 
 div.wrapper div.main {
-	height: 100px;
+	height: auto;
 	margin-top: 15px;
 	width: 100%;
 }
 
 div.wrapper div.main div.item {
-	background-color: white;
 	cursor: pointer;
-	height: auto;
+	height: 240px;
 	float: left;
 	margin: 0 10px;
 	margin-bottom: 20px;
 	position: relative;
 	transition: 0.2s;
-	width: 200px;
-}
-
-div.wrapper div.main div.item:hover {
-	transform: translate(0, -2px);
-	box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
+	width: 255px;
 }
 
 div.wrapper div.main div.item div.thumb img {
+	border-radius: 4px;
+	height: 160px;
+	object-fit: cover;
+	overflow: hidden;
+	position: relative;
+	transition: 0.2s;
+	width: 100%;
+}
+
+div.wrapper div.main div.item iframe {
 	height: 160px;
 	object-fit: cover;
 	position: relative;
@@ -58,24 +63,28 @@ div.wrapper div.main div.item div.thumb img {
 }
 
 div.wrapper div.main div.item div.text {
-	box-sizing: border-box;
-	padding: 15px;
+	margin-top: 10px;
 }
 
 div.wrapper div.main div.item:hover div.text h3.name {
 	color: darkblue;
 }
 
+div.wrapper div.main div.item:hover div.thumb img {
+	filter: brightness(0.8);
+}
+
 div.wrapper div.main div.item div.text h3.name {
 	color: #333333;
-	font-size: 15px;
+	font-size: 14px;
+	margin: 0;
 }
 
 div.wrapper div.main div.item div.text span.category {
-	background-color: palevioletred;
+	background-color: royalblue;
 	border-radius: 3px;
 	color: white;
 	font-size: "Open Sans";
-	font-size: 12px;
-	padding: 3px 7px;
+	font-size: 11px;
+	padding: 2px 7px;
 }
