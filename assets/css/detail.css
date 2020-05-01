@@ -12,6 +12,12 @@ div.banner {
 	width: 100%;
 }
 
+@media screen and (max-width: 700px) {
+	div.banner {
+		height: 70px;
+	}
+}
+
 div.wrapper {
 	display: flex;
 	flex-direction: row;
@@ -102,4 +108,51 @@ div.wrapper div.more a {
 
 div.wrapper div.more a:hover {
 	color: teal;
+}
+
+@media screen and (max-width: 1150px) {
+	div.wrapper {
+		width: 900px;
+	}
+
+	div.wrapper div.content {
+		width: 630px;
+	}
+
+	div.wrapper div.more {
+		width: 250px;
+	}
+}
+
+@media screen and (max-width: 950px) {
+	div.wrapper {
+		display: block;
+		margin-top: 20px;
+		width: 90%;
+	}
+
+	div.wrapper div.content {
+		width: 100%;
+	}
+
+	div.wrapper div.content h2.title {
+		font-size: 20px;
+	}
+
+	div.wrapper div.content p.date {
+		font-size: 12px;
+	}
+
+	div.wrapper div.content p.category {
+		font-size: 12px;
+		padding: 2px 4px;
+	}
+
+	div.wrapper div.content p.description {
+		font-size: 14px;
+	}
+
+	div.wrapper div.more {
+		display: none;
+	}
 }

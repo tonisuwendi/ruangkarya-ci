@@ -6,6 +6,14 @@
     <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> <?= $setting['app_name'] ?>. All Right Reserved.</p>
 </footer>
 
+<style>
+    @media screen and (max-width: 600px){
+        footer p {
+            font-size: 14px;
+        }
+    }
+</style>
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>

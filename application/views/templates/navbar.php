@@ -5,12 +5,12 @@ $setting = $this->db->get('settings')->row_array();
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-light">
     <div class="container">
-    <a class="navbar-brand" href="<?= base_url(); ?>"><img src="<?= base_url(); ?>assets/images/logo/<?= $setting['logo']; ?>" alt="logo"></a>
+    <a class="navbar-brand mr-5" href="<?= base_url(); ?>"><img src="<?= base_url(); ?>assets/images/logo/<?= $setting['logo']; ?>" alt="logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse ml-5" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
             <a class="nav-link" href="<?= base_url(); ?>">Beranda</a>
