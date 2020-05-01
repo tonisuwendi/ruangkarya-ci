@@ -10,7 +10,7 @@
             <div class="card shadow">
                 <div class="card-body">
                 <div class="list-group">
-                    <a href="<?= base_url(); ?>administrator/settings" class="list-group-item list-group-item-action">Nama Aplikasi</a>
+                <a href="<?= base_url(); ?>administrator/settings" class="list-group-item list-group-item-action">Nama Aplikasi</a>
                     <a href="<?= base_url(); ?>administrator/setting/logo" class="list-group-item list-group-item-action">Logo</a>
                     <a href="<?= base_url(); ?>administrator/setting/favicon" class="list-group-item list-group-item-action">Favicon</a>
                     <a href="<?= base_url(); ?>administrator/setting/banner" class="list-group-item list-group-item-action">Banner</a>
@@ -22,18 +22,21 @@
         <div class="col-md-9">
             <div class="card shadow">
                 <div class="card-header">
-                    <h2 class="lead text-dark mb-0">Nama Aplikasi</h2>
+                    <h2 class="lead text-dark mb-0">Favicon</h2>
                 </div>
                 <div class="card-body">
-                    <form action="<?= base_url(); ?>administrator/settings" method="post">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="app_name" value="<?= $setting['app_name']; ?>" required>
+                    <?php echo $this->session->flashdata('failed'); ?>
+                    <img src="<?= base_url(); ?>assets/images/logo/<?= $setting['favicon']; ?>" alt="" style="width: 20%">
+                    <form action="<?= base_url(); ?>administrator/upload_favicon_setting" method="post" enctype="multipart/form-data">
+                        <div class="form-group mt-3">
+                            <input type="file" class="form-control" name="file6" required>
                         </div>
-                        <button class="btn btn-sm btn-info" type="submit">Edit Nama</button>
+                        <button class="btn btn-sm btn-info" type="submit">Edit Favicon</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<br><br>
 <!-- /.container-fluid -->

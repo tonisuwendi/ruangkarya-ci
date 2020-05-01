@@ -3,8 +3,8 @@ body {
 }
 
 div.banner {
-	background-image: url(../images/bg/banner.jpg);
 	background-repeat: repeat-x;
+	background-position: center;
 	display: flex;
 	flex-direction: column;
 	height: 100px;

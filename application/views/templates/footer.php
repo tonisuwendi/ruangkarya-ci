@@ -1,6 +1,9 @@
+<?php
+    $setting = $this->db->get('settings')->row_array();
+?>
 
 <footer>
-    <p>Copyright &copy; 2020 Ruangkarya. All Right Reserved.</p>
+    <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> <?= $setting['app_name'] ?>. All Right Reserved.</p>
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

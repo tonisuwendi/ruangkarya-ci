@@ -18,6 +18,15 @@ class Projects_model extends CI_Model {
         return $this->db->get("projects", $number,$offset);
     }
 
+    public function searchProjects($q){
+        $this->db->select("*, projects.name AS pName, projects.id AS pId");
+        $this->db->join("categories", "projects.category=categories.id");
+        $this->db->order_by('projects.id', "desc");
+        $this->db->like('projects.name', $q);
+        $this->db->or_like('categories.name', $q);
+        return $this->db->get("projects");
+    }
+
     public function getProjectById($id){
         $this->db->select("*, projects.name AS pName, projects.id AS pId");
         $this->db->from("projects");
@@ -45,10 +54,12 @@ class Projects_model extends CI_Model {
     public function uploadFile($type){
         if($type == '5'){
             $config['upload_path'] = './assets/images/bg/';
+        }else if($type == '6'){
+            $config['upload_path'] = './assets/images/logo/';
         }else{
             $config['upload_path'] = './assets/images/projects/';
         }
-        if($type == '1' || $type == '5'){
+        if($type == '1' || $type == '5' || $type == '6'){
             $config['allowed_types'] = 'jpg|png|jpeg';
         }else{
             $config['allowed_types'] = 'gif';

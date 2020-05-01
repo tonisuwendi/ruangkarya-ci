@@ -10,7 +10,9 @@
             <div class="card shadow">
                 <div class="card-body">
                 <div class="list-group">
-                    <a href="<?= base_url(); ?>administrator/settings" class="list-group-item list-group-item-action">Nama Aplikasi</a>
+                <a href="<?= base_url(); ?>administrator/settings" class="list-group-item list-group-item-action">Nama Aplikasi</a>
+                    <a href="<?= base_url(); ?>administrator/setting/logo" class="list-group-item list-group-item-action">Logo</a>
+                    <a href="<?= base_url(); ?>administrator/setting/favicon" class="list-group-item list-group-item-action">Favicon</a>
                     <a href="<?= base_url(); ?>administrator/setting/banner" class="list-group-item list-group-item-action">Banner</a>
                     <a href="<?= base_url(); ?>administrator/setting/text" class="list-group-item list-group-item-action">Teks Banner</a>
                 </div>

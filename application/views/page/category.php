@@ -1,6 +1,16 @@
+<?php
+$setting = $this->db->get('settings')->row_array();
+?>
+
+<style>
+    div.banner {
+        background-image: url(<?= base_url(); ?>assets/images/bg/<?= $setting['banner']; ?>);
+    }
+</style>
+
 <div class="banner">
     <div class="container">
-        <h2>TEMUKAN PULUHAN RIBU <br> TALENTA KREATIF INDONESIA</h2>
+        <h2><?= nl2br($setting['text']); ?></h2>
     </div>
 </div>
 

@@ -1,3 +1,13 @@
+<?php
+$setting = $this->db->get('settings')->row_array();
+?>
+
+<style>
+    div.banner {
+        background-image: url(<?= base_url(); ?>assets/images/bg/<?= $setting['banner']; ?>);
+    }
+</style>
+
 <div class="banner"></div>
 
 <div class="wrapper">

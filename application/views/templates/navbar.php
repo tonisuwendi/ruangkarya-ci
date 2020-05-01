@@ -1,10 +1,11 @@
 <?php
 $categories = $this->db->get('categories');
+$setting = $this->db->get('settings')->row_array();
 ?>
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-light">
     <div class="container">
-    <a class="navbar-brand" href="<?= base_url(); ?>"><img src="<?= base_url(); ?>assets/images/logo/logo.png" alt="logo"></a>
+    <a class="navbar-brand" href="<?= base_url(); ?>"><img src="<?= base_url(); ?>assets/images/logo/<?= $setting['logo']; ?>" alt="logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -25,8 +26,8 @@ $categories = $this->db->get('categories');
             </div>
         </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-        <input class="form-control form-control-sm mr-sm-1" type="search" placeholder="Cari projek" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="<?= base_url(); ?>search">
+        <input class="form-control form-control-sm mr-sm-1" name="q" type="search" placeholder="Cari projek" aria-label="Search" autocomplete="off">
         <button class="btn btn-sm btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
         </form>
     </div>

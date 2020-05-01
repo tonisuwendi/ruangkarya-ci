@@ -15,7 +15,7 @@ $setting = $this->db->get('settings')->row_array();
 </div>
 
 <div class="wrapper">
-    <h2 class="title">Projek Terbaru</h2>
+    <h2 class="title">Hasil Pencarian : <strong><?= $q; ?></strong></h2>
     <?php if($projects->num_rows() > 0){ ?>
     <div class="div main">
         <?php foreach($projects->result_array() as $p): ?>
@@ -39,7 +39,8 @@ $setting = $this->db->get('settings')->row_array();
     </div>
     <br>
     <?php }else{ ?>
-        <div class="alert alert-warning">Belum ada projek</div>
+        <div class="alert alert-warning">Tidak ada hasil untuk <strong><?= $q; ?></strong></div>
+        <br><br><br><br>
     <?php } ?>
     <?= $this->pagination->create_links(); ?>
 </div>

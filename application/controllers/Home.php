@@ -8,7 +8,8 @@ class Home extends CI_Controller {
     }
 
     public function index(){
-        $data['title'] = 'Ruangkarya';
+        $setting = $this->db->get('settings')->row_array();
+        $data['title'] = $setting['app_name'];
         $data['css'] = 'style';
         $config['base_url'] = base_url() . 'home/index/';
         $config['total_rows'] = $this->Projects_model->getProjects("","")->num_rows();
@@ -37,6 +38,19 @@ class Home extends CI_Controller {
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');
         $this->load->view('index', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function search(){
+        $q = $this->input->get('q');
+        $setting = $this->db->get('settings')->row_array();
+        $data['title'] = 'Hasil Pencarian : ' . $q;
+        $data['css'] = 'style';
+        $data['projects'] = $this->Projects_model->searchProjects($q);
+        $data['q'] = $q;
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar');
+        $this->load->view('search', $data);
         $this->load->view('templates/footer');
     }
 

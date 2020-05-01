@@ -13,9 +13,13 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url();  ?>assets/css/app-responsive.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url();  ?>assets/css/<?= $css;  ?>.css">
 
+    <?php
+      $setting = $this->db->get('settings')->row_array();
+    ?>
+
     <link
       rel="shortcut icon"
-      href="<?= base_url();  ?>assets/images/logo/favicon.png"
+      href="<?= base_url();  ?>assets/images/logo/<?= $setting['favicon']; ?>"
       type="image/x-icon"
     />
 

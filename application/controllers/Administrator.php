@@ -299,6 +299,66 @@ class Administrator extends CI_Controller {
         }
     }
 
+    public function logo_setting(){
+        $data['title'] = 'Pengaturan - Admin Panel';
+        $data['setting'] = $this->db->get('settings')->row_array();
+        $this->load->view('templates/header_admin', $data);
+        $this->load->view('administrator/logo_setting', $data);
+        $this->load->view('templates/footer_admin');
+    }
+
+    public function upload_logo_setting(){
+        $data = array();
+        $upload = $this->Projects_model->uploadFile('6');
+        if($upload['result'] == 'success'){
+            $nameFile = $upload['file']['file_name'];
+            $this->db->set('logo', $nameFile);
+            $this->db->update('settings');
+            $this->session->set_flashdata('upload', "<script>
+                swal({
+                text: 'Logo berhasil diubah',
+                icon: 'success'
+                });
+                </script>");
+                redirect(base_url() . 'administrator/setting/logo');
+        }else{
+            $this->session->set_flashdata('failed', "<div class='alert alert-danger' role='alert'>
+            Gagal mengubah logo, pastikan file berukuran maksimal 2mb dan berformat jpg, jpeg, atau png. Silakan ulangi lagi.
+        </div>");
+            redirect(base_url() . 'administrator/setting/logo');
+        }
+    }
+
+    public function favicon_setting(){
+        $data['title'] = 'Pengaturan - Admin Panel';
+        $data['setting'] = $this->db->get('settings')->row_array();
+        $this->load->view('templates/header_admin', $data);
+        $this->load->view('administrator/favicon_setting', $data);
+        $this->load->view('templates/footer_admin');
+    }
+
+    public function upload_favicon_setting(){
+        $data = array();
+        $upload = $this->Projects_model->uploadFile('6');
+        if($upload['result'] == 'success'){
+            $nameFile = $upload['file']['file_name'];
+            $this->db->set('favicon', $nameFile);
+            $this->db->update('settings');
+            $this->session->set_flashdata('upload', "<script>
+                swal({
+                text: 'Favicon berhasil diubah',
+                icon: 'success'
+                });
+                </script>");
+                redirect(base_url() . 'administrator/setting/favicon');
+        }else{
+            $this->session->set_flashdata('failed', "<div class='alert alert-danger' role='alert'>
+            Gagal mengubah favicon, pastikan file berukuran maksimal 2mb dan berformat jpg, jpeg, atau png. Silakan ulangi lagi.
+        </div>");
+            redirect(base_url() . 'administrator/setting/favicon');
+        }
+    }
+
     public function banner_setting(){
         $data['title'] = 'Pengaturan - Admin Panel';
         $data['setting'] = $this->db->get('settings')->row_array();
@@ -348,6 +408,62 @@ class Administrator extends CI_Controller {
                 });
                 </script>");
             redirect(base_url() . 'administrator/setting/text');
+        }
+    }
+
+    // edit
+    public function edit(){
+        $data['title'] = 'Edit Profil Admin - Admin Panel';
+        $admin = $this->db->get('admin')->row_array();
+        $data['admin'] = $admin;
+        $this->load->view('templates/header_admin', $data);
+        $this->load->view('administrator/edit', $data);
+        $this->load->view('templates/footer_admin');
+    }
+
+    public function edit_username(){
+        $this->db->set('username', $this->input->post('username'));
+        $this->db->update('admin');
+        $this->session->set_flashdata('upload', "<script>
+            swal({
+            text: 'Username berhasil diubah',
+            icon: 'success'
+            });
+            </script>");
+        redirect(base_url() . 'administrator/edit');
+    }
+
+    public function edit_pass(){
+        $admin = $this->db->get('admin')->row_array();
+        if(password_verify($this->input->post('oldPassword'), $admin['password'])){
+            if($this->input->post('newPassword') ==  $this->input->post('confirmPassword')){
+                $pass = password_hash($this->input->post('newPassword'), PASSWORD_DEFAULT);
+                $this->db->set('password', $pass);
+                $this->db->update('admin');
+                $this->session->set_flashdata('upload', "<script>
+                    swal({
+                    text: 'Password berhasil diubah',
+                    icon: 'success'
+                    });
+                    </script>");
+                redirect(base_url() . 'administrator/edit');
+            }else{
+                $this->session->set_flashdata('upload', "<script>
+                    swal({
+                    text: 'Konfirmasi password tidak sama. Silakan coba lagi',
+                    icon: 'error'
+                    });
+                    </script>");
+                redirect(base_url() . 'administrator/edit');
+            }
+        }else{
+            $this->session->set_flashdata('upload', "<script>
+                swal({
+                text: 'Password lama salah. Silakan coba lagi',
+                icon: 'error'
+                });
+                </script>");
+            redirect(base_url() . 'administrator/edit');
         }
     }
 
