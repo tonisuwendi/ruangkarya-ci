@@ -25,7 +25,16 @@ $setting = $this->db->get('settings')->row_array();
         <?php }else{ ?>
             <img src="<?= base_url(); ?>assets/images/projects/<?= $project['file']; ?>" alt="<?= $project['pName']; ?>" class="clickFullScreenImg">
         <?php } ?>
-        <p class="description"><?= $project['description']; ?></p>
+        <p class="description">
+            <?= $project['description']; ?>
+        </p>
+        <?php if($project['file2'] != ""){ ?>
+            <img src="<?= base_url(); ?>assets/images/projects/<?= $project['file2']; ?>" alt="<?= $project['pName']; ?>" class="clickFullScreenImg">
+        <?php } ?>
+        <?php if($project['linkyt'] != ""){ ?>
+            <br><br>
+            <iframe src="https://www.youtube.com/embed/<?= $project['linkyt']; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <?php } ?>
     </div>
     <div class="more">
         <h2 class="title">Projek Lainnya</h2>

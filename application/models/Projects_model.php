@@ -47,6 +47,7 @@ class Projects_model extends CI_Model {
 
     public function getAllProjectsNotSlug($slug){
         $this->db->limit(7);
+        $this->db->order_by('id', 'desc');
         $this->db->where('projects.slug !=', $slug);
         return $this->db->get("projects"); 
     }
@@ -59,11 +60,7 @@ class Projects_model extends CI_Model {
         }else{
             $config['upload_path'] = './assets/images/projects/';
         }
-        if($type == '1' || $type == '5' || $type == '6'){
-            $config['allowed_types'] = 'jpg|png|jpeg';
-        }else{
-            $config['allowed_types'] = 'gif';
-        }
+        $config['allowed_types'] = 'jpg|png|jpeg|gif';
         $config['max_size'] = '2048';
         $config['file_name'] = round(microtime(true)*1000);
 
@@ -77,10 +74,12 @@ class Projects_model extends CI_Model {
         }
     }
 
-    public function insertProjects($nameFile){
+    public function insertProjects($nameFile, $nameFile1){
         $name = $this->input->post('name');
         $category = $this->input->post('category');
         $file = $nameFile;
+        $file2 = $nameFile1;
+        $linkyt = $this->input->post('linkyt');
         $description = $this->input->post('description');
         function textToSlug($text='') {
             $text = trim($text);
@@ -97,6 +96,8 @@ class Projects_model extends CI_Model {
             "name" => $name,
             "category" => $category,
             "file" => $file,
+            "file2" => $file2,
+            "linkyt" => $linkyt,
             "description" => $description,
             "slug" => $slug . '-' . rand(),
             "date_input" => $date

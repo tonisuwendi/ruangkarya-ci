@@ -125,20 +125,42 @@ class Administrator extends CI_Controller {
             $this->load->view('templates/footer_admin');
         }else{
             $category = $this->input->post('category');
-            $dbCat = $this->db->get_where('categories', ['id' => $category])->row_array();
+            $dbCat = $this->db->get_where('categories', ['type' => $category])->row_array();
             if($dbCat['type'] == 1){
                 $data = array();
                 $upload = $this->Projects_model->uploadFile('1');
                 if($upload['result'] == 'success'){
-                    $nameFile = $upload['file']['file_name'];
-                    $this->Projects_model->insertProjects($nameFile);
-                    $this->session->set_flashdata('upload', "<script>
-                        swal({
-                        text: 'Projek berhasil ditambahkan',
-                        icon: 'success'
-                        });
-                        </script>");
-                        redirect(base_url() . 'administrator/projects');
+                    if($_FILES['file4']['name'] != ""){
+                        $upload1 = $this->Projects_model->uploadFile('4');
+                        if($upload1['result'] == 'success'){
+                            $nameFile = $upload['file']['file_name'];
+                            $nameFile1 = $upload1['file']['file_name'];
+                            $this->Projects_model->insertProjects($nameFile, $nameFile1);
+                            $this->session->set_flashdata('upload', "<script>
+                                swal({
+                                text: 'Projek berhasil ditambahkan',
+                                icon: 'success'
+                                });
+                                </script>");
+                                redirect(base_url() . 'administrator/projects');
+                        }else{
+                            $this->session->set_flashdata('failed', "<div class='alert alert-danger' role='alert'>
+                            Gagal menambah projek, pastikan file pendukung berukuran maksimal 2mb dan berformat png, jpg, jpeg. Silakan ulangi lagi.
+                          </div>");
+                            redirect(base_url() . 'administrator/projects/add');
+                        }
+                    }else{
+                        $nameFile = $upload['file']['file_name'];
+                        $nameFile1 = "";
+                        $this->Projects_model->insertProjects($nameFile, $nameFile1);
+                        $this->session->set_flashdata('upload', "<script>
+                            swal({
+                            text: 'Projek berhasil ditambahkan',
+                            icon: 'success'
+                            });
+                            </script>");
+                            redirect(base_url() . 'administrator/projects');
+                    }
                 }else{
                     $this->session->set_flashdata('failed', "<div class='alert alert-danger' role='alert'>
                     Gagal menambah projek, pastikan file berukuran maksimal 2mb dan berformat png, jpg, jpeg. Silakan ulangi lagi.
@@ -149,15 +171,37 @@ class Administrator extends CI_Controller {
                 $data = array();
                 $upload = $this->Projects_model->uploadFile('2');
                 if($upload['result'] == 'success'){
-                    $nameFile = $upload['file']['file_name'];
-                    $this->Projects_model->insertProjects($nameFile);
-                    $this->session->set_flashdata('upload', "<script>
-                        swal({
-                        text: 'Projek berhasil ditambahkan',
-                        icon: 'success'
-                        });
-                        </script>");
-                        redirect(base_url() . 'administrator/projects');
+                    if($_FILES['file4']['name'] != ""){
+                        $upload1 = $this->Projects_model->uploadFile('4');
+                        if($upload1['result'] == 'success'){
+                            $nameFile = $upload['file']['file_name'];
+                            $nameFile1 = $upload1['file']['file_name'];
+                            $this->Projects_model->insertProjects($nameFile, $nameFile1);
+                            $this->session->set_flashdata('upload', "<script>
+                                swal({
+                                text: 'Projek berhasil ditambahkan',
+                                icon: 'success'
+                                });
+                                </script>");
+                                redirect(base_url() . 'administrator/projects');
+                        }else{
+                            $this->session->set_flashdata('failed', "<div class='alert alert-danger' role='alert'>
+                            Gagal menambah projek, pastikan file pendukung berukuran maksimal 2mb dan berformat png, jpg, jpeg. Silakan ulangi lagi.
+                          </div>");
+                            redirect(base_url() . 'administrator/projects/add');
+                        }
+                    }else{
+                        $nameFile = $upload['file']['file_name'];
+                        $nameFile1 = "";
+                        $this->Projects_model->insertProjects($nameFile, $nameFile1);
+                        $this->session->set_flashdata('upload', "<script>
+                            swal({
+                            text: 'Projek berhasil ditambahkan',
+                            icon: 'success'
+                            });
+                            </script>");
+                            redirect(base_url() . 'administrator/projects');
+                    }
                 }else{
                     $this->session->set_flashdata('failed', "<div class='alert alert-danger' role='alert'>
                     Gagal menambah projek, pastikan file berukuran maksimal 2mb dan berformat gif. Silakan ulangi lagi.
@@ -165,15 +209,39 @@ class Administrator extends CI_Controller {
                     redirect(base_url() . 'administrator/projects/add');
                 }
             }else if($dbCat['type'] == 3){
-                $nameFile = $this->input->post('file3');
-                $this->Projects_model->insertProjects($nameFile);
-                $this->session->set_flashdata('upload', "<script>
-                swal({
-                text: 'Projek berhasil ditambahkan',
-                icon: 'success'
-                });
-                </script>");
-                redirect(base_url() . 'administrator/projects');
+                $data = array();
+                if($_FILES['file4']['name'] != ""){
+                    $upload1 = $this->Projects_model->uploadFile('4');
+                    if($upload1['result'] == 'success'){
+                        $nameFile = $this->input->post('file3');
+                        $nameFile1 = $upload1['file']['file_name'];
+                        $this->Projects_model->insertProjects($nameFile, $nameFile1);
+                        $this->session->set_flashdata('upload', "<script>
+                            swal({
+                            text: 'Projek berhasil ditambahkan',
+                            icon: 'success'
+                            });
+                            </script>");
+                            redirect(base_url() . 'administrator/projects');
+                    }else{
+                        $this->session->set_flashdata('failed', "<div class='alert alert-danger' role='alert'>
+                        Gagal menambah projek, pastikan file pendukung berukuran maksimal 2mb dan berformat gif. Silakan ulangi lagi.
+                      </div>");
+                        redirect(base_url() . 'administrator/projects/add');
+                    }
+                }else{
+                    $upload1 = "";
+                    $nameFile = $this->input->post('file3');
+                    $nameFile1 = $upload1['file']['file_name'];
+                    $this->Projects_model->insertProjects($nameFile, $nameFile1);
+                    $this->session->set_flashdata('upload', "<script>
+                        swal({
+                        text: 'Projek berhasil ditambahkan',
+                        icon: 'success'
+                        });
+                        </script>");
+                        redirect(base_url() . 'administrator/projects');
+                }
             }
         }
     }

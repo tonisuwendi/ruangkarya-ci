@@ -16,6 +16,9 @@
   <link rel="stylesheet" href="<?= base_url(); ?>assets/stisla/assets/css/style.css">
   <link rel="stylesheet" href="<?= base_url(); ?>assets/stisla/assets/css/components.css">
 </head>
+<?php
+    $setting = $this->db->get('settings')->row_array();
+?>
 
 <body>
   <div id="app">
@@ -23,11 +26,8 @@
       <div class="container mt-2">
         <div class="row">
           <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-            <div class="login-brand">
-              <img src="<?= base_url(); ?>assets/stisla/assets/img/stisla-fill.svg" alt="logo" width="70" class="shadow-light rounded-circle">
-            </div>
 
-            <div class="card card-primary">
+            <div class="card card-primary mt-5">
               <div class="card-header"><h4>Login Admin</h4></div>
 
               <div class="card-body">
@@ -62,7 +62,7 @@
               </div>
             </div>
             <div class="simple-footer">
-              Copyright &copy; Ruangkarya <script>document.write(new Date().getFullYear())</script>
+            Copyright &copy; <script>document.write(new Date().getFullYear())</script> <?= $setting['app_name'] ?>.
             </div>
           </div>
         </div>
