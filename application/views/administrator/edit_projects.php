@@ -42,7 +42,7 @@
                     <div class="form-group row formInputFileProjectType" id="formInputFileProjectType1">
                         <label for="file" class="col-sm-2 col-form-label">File Baru</label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" name="file1" id="file">
+                            <input type="file" class="form-control" name="file1" id="file" accept="image/jpg,image/jpeg,image/png">
                             <small class="text-muted">Format file yang di izinkan JPG, JPEG, dan PNG</small>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                     <div class="form-group row formInputFileProjectType" id="formInputFileProjectType2">
                         <label for="file" class="col-sm-2 col-form-label">File Baru</label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" name="file2" id="file">
+                            <input type="file" class="form-control" name="file2" id="file" accept="image/gif">
                             <small class="text-muted">Format file yang di izinkan GIF</small>
                         </div>
                     </div>

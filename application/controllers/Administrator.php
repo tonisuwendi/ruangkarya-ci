@@ -116,7 +116,6 @@ class Administrator extends CI_Controller {
     public function add_projects(){
         $this->form_validation->set_rules('name', 'Nama', 'required', ['required' => 'Nama wajib diisi']);
         $this->form_validation->set_rules('category', 'Kategori', 'required', ['required' => 'Kategori wajib diisi']);
-        $this->form_validation->set_rules('description', 'Deskripsi', 'required', ['required' => 'Deskripsi wajib diisi']);
         if($this->form_validation->run() == false){
             $data['title'] = 'Tambah Projek - Admin Panel';
             $data['categories'] = $this->Categories_model->getCategories();
@@ -124,31 +123,64 @@ class Administrator extends CI_Controller {
             $this->load->view('administrator/add_projects', $data);
             $this->load->view('templates/footer_admin');
         }else{
+            $ranId = substr(rand(),0,4) . substr(rand(),4,6);
             $category = $this->input->post('category');
             $dbCat = $this->db->get_where('categories', ['type' => $category])->row_array();
             if($dbCat['type'] == 1){
                 $data = array();
                 $upload = $this->Projects_model->uploadFile('1');
                 if($upload['result'] == 'success'){
-                    if($_FILES['file4']['name'] != ""){
-                        $upload1 = $this->Projects_model->uploadFile('4');
-                        if($upload1['result'] == 'success'){
-                            $nameFile = $upload['file']['file_name'];
-                            $nameFile1 = $upload1['file']['file_name'];
-                            $this->Projects_model->insertProjects($nameFile, $nameFile1);
-                            $this->session->set_flashdata('upload', "<script>
-                                swal({
-                                text: 'Projek berhasil ditambahkan',
-                                icon: 'success'
-                                });
-                                </script>");
-                                redirect(base_url() . 'administrator/projects');
-                        }else{
-                            $this->session->set_flashdata('failed', "<div class='alert alert-danger' role='alert'>
-                            Gagal menambah projek, pastikan file pendukung berukuran maksimal 2mb dan berformat png, jpg, jpeg. Silakan ulangi lagi.
-                          </div>");
-                            redirect(base_url() . 'administrator/projects/add');
+                    if($_FILES['file11']['name'] != "" || $_FILES['file12']['name'] != "" || $_FILES['file13']['name'] != "" || $_FILES['file14']['name'] != "" || $_FILES['file15']['name'] != "" ){
+                        if($_FILES['file11']['name'] != ""){
+                            $upload1 = $this->Projects_model->uploadFileOther($ranId, '11');
+                            $data = [
+                                'name' => $upload1['file']['file_name'],
+                                'randId' => $ranId
+                            ];
+                            $this->db->insert('file', $data);
                         }
+                        if($_FILES['file12']['name'] != ""){
+                            $upload1 = $this->Projects_model->uploadFileOther($ranId, '12');
+                            $data = [
+                                'name' => $upload1['file']['file_name'],
+                                'randId' => $ranId
+                            ];
+                            $this->db->insert('file', $data);
+                        }
+                        if($_FILES['file13']['name'] != ""){
+                            $upload1 = $this->Projects_model->uploadFileOther($ranId, '13');
+                            $data = [
+                                'name' => $upload1['file']['file_name'],
+                                'randId' => $ranId
+                            ];
+                            $this->db->insert('file', $data);
+                        }
+                        if($_FILES['file14']['name'] != ""){
+                            $upload1 = $this->Projects_model->uploadFileOther($ranId, '14');
+                            $data = [
+                                'name' => $upload1['file']['file_name'],
+                                'randId' => $ranId
+                            ];
+                            $this->db->insert('file', $data);
+                        }
+                        if($_FILES['file15']['name'] != ""){
+                            $upload1 = $this->Projects_model->uploadFileOther($ranId, '15');
+                            $data = [
+                                'name' => $upload1['file']['file_name'],
+                                'randId' => $ranId
+                            ];
+                            $this->db->insert('file', $data);
+                        }
+                        $nameFile = $upload['file']['file_name'];
+                        $nameFile1 = $ranId;
+                        $this->Projects_model->insertProjects($nameFile, $nameFile1);
+                        $this->session->set_flashdata('upload', "<script>
+                            swal({
+                            text: 'Projek berhasil ditambahkan',
+                            icon: 'success'
+                            });
+                            </script>");
+                            redirect(base_url() . 'administrator/projects');
                     }else{
                         $nameFile = $upload['file']['file_name'];
                         $nameFile1 = "";
@@ -171,25 +203,57 @@ class Administrator extends CI_Controller {
                 $data = array();
                 $upload = $this->Projects_model->uploadFile('2');
                 if($upload['result'] == 'success'){
-                    if($_FILES['file4']['name'] != ""){
-                        $upload1 = $this->Projects_model->uploadFile('4');
-                        if($upload1['result'] == 'success'){
-                            $nameFile = $upload['file']['file_name'];
-                            $nameFile1 = $upload1['file']['file_name'];
-                            $this->Projects_model->insertProjects($nameFile, $nameFile1);
-                            $this->session->set_flashdata('upload', "<script>
-                                swal({
-                                text: 'Projek berhasil ditambahkan',
-                                icon: 'success'
-                                });
-                                </script>");
-                                redirect(base_url() . 'administrator/projects');
-                        }else{
-                            $this->session->set_flashdata('failed', "<div class='alert alert-danger' role='alert'>
-                            Gagal menambah projek, pastikan file pendukung berukuran maksimal 2mb dan berformat png, jpg, jpeg. Silakan ulangi lagi.
-                          </div>");
-                            redirect(base_url() . 'administrator/projects/add');
+                    if($_FILES['file11']['name'] != "" || $_FILES['file12']['name'] != "" || $_FILES['file13']['name'] != "" || $_FILES['file14']['name'] != "" || $_FILES['file15']['name'] != "" ){
+                        if($_FILES['file11']['name'] != ""){
+                            $upload1 = $this->Projects_model->uploadFileOther($ranId, '11');
+                            $data = [
+                                'name' => $upload1['file']['file_name'],
+                                'randId' => $ranId
+                            ];
+                            $this->db->insert('file', $data);
                         }
+                        if($_FILES['file12']['name'] != ""){
+                            $upload1 = $this->Projects_model->uploadFileOther($ranId, '12');
+                            $data = [
+                                'name' => $upload1['file']['file_name'],
+                                'randId' => $ranId
+                            ];
+                            $this->db->insert('file', $data);
+                        }
+                        if($_FILES['file13']['name'] != ""){
+                            $upload1 = $this->Projects_model->uploadFileOther($ranId, '13');
+                            $data = [
+                                'name' => $upload1['file']['file_name'],
+                                'randId' => $ranId
+                            ];
+                            $this->db->insert('file', $data);
+                        }
+                        if($_FILES['file14']['name'] != ""){
+                            $upload1 = $this->Projects_model->uploadFileOther($ranId, '14');
+                            $data = [
+                                'name' => $upload1['file']['file_name'],
+                                'randId' => $ranId
+                            ];
+                            $this->db->insert('file', $data);
+                        }
+                        if($_FILES['file15']['name'] != ""){
+                            $upload1 = $this->Projects_model->uploadFileOther($ranId, '15');
+                            $data = [
+                                'name' => $upload1['file']['file_name'],
+                                'randId' => $ranId
+                            ];
+                            $this->db->insert('file', $data);
+                        }
+                        $nameFile = $upload['file']['file_name'];
+                        $nameFile1 = $ranId;
+                        $this->Projects_model->insertProjects($nameFile, $nameFile1);
+                        $this->session->set_flashdata('upload', "<script>
+                            swal({
+                            text: 'Projek berhasil ditambahkan',
+                            icon: 'success'
+                            });
+                            </script>");
+                            redirect(base_url() . 'administrator/projects');
                     }else{
                         $nameFile = $upload['file']['file_name'];
                         $nameFile1 = "";
@@ -210,29 +274,60 @@ class Administrator extends CI_Controller {
                 }
             }else if($dbCat['type'] == 3){
                 $data = array();
-                if($_FILES['file4']['name'] != ""){
-                    $upload1 = $this->Projects_model->uploadFile('4');
-                    if($upload1['result'] == 'success'){
-                        $nameFile = $this->input->post('file3');
-                        $nameFile1 = $upload1['file']['file_name'];
-                        $this->Projects_model->insertProjects($nameFile, $nameFile1);
-                        $this->session->set_flashdata('upload', "<script>
-                            swal({
-                            text: 'Projek berhasil ditambahkan',
-                            icon: 'success'
-                            });
-                            </script>");
-                            redirect(base_url() . 'administrator/projects');
-                    }else{
-                        $this->session->set_flashdata('failed', "<div class='alert alert-danger' role='alert'>
-                        Gagal menambah projek, pastikan file pendukung berukuran maksimal 2mb dan berformat gif. Silakan ulangi lagi.
-                      </div>");
-                        redirect(base_url() . 'administrator/projects/add');
+                if($_FILES['file11']['name'] != "" || $_FILES['file12']['name'] != "" || $_FILES['file13']['name'] != "" || $_FILES['file14']['name'] != "" || $_FILES['file15']['name'] != "" ){
+                    if($_FILES['file11']['name'] != ""){
+                        $upload1 = $this->Projects_model->uploadFileOther($ranId, '11');
+                        $data = [
+                            'name' => $upload1['file']['file_name'],
+                            'randId' => $ranId
+                        ];
+                        $this->db->insert('file', $data);
                     }
-                }else{
-                    $upload1 = "";
+                    if($_FILES['file12']['name'] != ""){
+                        $upload1 = $this->Projects_model->uploadFileOther($ranId, '12');
+                        $data = [
+                            'name' => $upload1['file']['file_name'],
+                            'randId' => $ranId
+                        ];
+                        $this->db->insert('file', $data);
+                    }
+                    if($_FILES['file13']['name'] != ""){
+                        $upload1 = $this->Projects_model->uploadFileOther($ranId, '13');
+                        $data = [
+                            'name' => $upload1['file']['file_name'],
+                            'randId' => $ranId
+                        ];
+                        $this->db->insert('file', $data);
+                    }
+                    if($_FILES['file14']['name'] != ""){
+                        $upload1 = $this->Projects_model->uploadFileOther($ranId, '14');
+                        $data = [
+                            'name' => $upload1['file']['file_name'],
+                            'randId' => $ranId
+                        ];
+                        $this->db->insert('file', $data);
+                    }
+                    if($_FILES['file15']['name'] != ""){
+                        $upload1 = $this->Projects_model->uploadFileOther($ranId, '15');
+                        $data = [
+                            'name' => $upload1['file']['file_name'],
+                            'randId' => $ranId
+                        ];
+                        $this->db->insert('file', $data);
+                    }
                     $nameFile = $this->input->post('file3');
-                    $nameFile1 = $upload1['file']['file_name'];
+                    $nameFile1 = $ranId;
+                    $this->Projects_model->insertProjects($nameFile, $nameFile1);
+                    $this->session->set_flashdata('upload', "<script>
+                        swal({
+                        text: 'Projek berhasil ditambahkan',
+                        icon: 'success'
+                        });
+                        </script>");
+                        redirect(base_url() . 'administrator/projects');
+                }else{
+                    $nameFile = $this->input->post('file3');
+                    $nameFile1 = "";
                     $this->Projects_model->insertProjects($nameFile, $nameFile1);
                     $this->session->set_flashdata('upload', "<script>
                         swal({

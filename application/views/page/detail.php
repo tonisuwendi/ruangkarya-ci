@@ -13,6 +13,9 @@ $setting = $this->db->get('settings')->row_array();
 <div class="wrapper">
     <div class="content">
         <h2 class="title"><?= $project['pName']; ?></h2>
+        <?php if($this->session->userdata('admin')){ ?>
+            <a href="<?= base_url(); ?>administrator/project/<?= $project['pId'] ?>" class="btn float-right btn-info btn-sm"><i class="fa fa-pen"></i> Edit</a>
+        <?php } ?>
         <?php
         $exp = explode(" ",$project['date_input']);
         $date = explode("-", $exp[0]);
@@ -29,10 +32,14 @@ $setting = $this->db->get('settings')->row_array();
             <?= $project['description']; ?>
         </p>
         <?php if($project['file2'] != ""){ ?>
-            <img src="<?= base_url(); ?>assets/images/projects/<?= $project['file2']; ?>" alt="<?= $project['pName']; ?>" class="clickFullScreenImg">
+            <?php foreach($file->result_array() as $f): ?>
+                <hr>
+                <img src="<?= base_url(); ?>assets/images/projects/<?= $f['name']; ?>" alt="<?= $project['pName']; ?>" class="clickFullScreenImg">
+            <?php endforeach; ?>
         <?php } ?>
         <?php if($project['linkyt'] != ""){ ?>
-            <br><br>
+            <br>
+            <hr>
             <iframe src="https://www.youtube.com/embed/<?= $project['linkyt']; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <?php } ?>
     </div>

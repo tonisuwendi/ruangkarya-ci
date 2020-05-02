@@ -45,7 +45,8 @@
 							<td><?= $p['pName']; ?></td>
 							<td><?= $p['name']; ?></td>
 							<td><?= $p['date_input']; ?></td>
-							<td style="width: 100px">
+							<td style="width: 140px">
+								<a href="<?= base_url(); ?>project/<?= $p['slug']; ?>" class="btn btn-sm btn-primary" target="_blank"><i class="fa fa-eye"></i></a>
 								<a href="<?= base_url(); ?>administrator/project/<?= $p['pId']; ?>" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
 								<button onclick="btnDelete('<?= $p['pId']; ?>')" class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
 							</td>

@@ -67,10 +67,38 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="file4" class="col-sm-2 col-form-label">File Pendukung</label>
+                    <label for="file11" class="col-sm-2 col-form-label">File Pendukung</label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control" name="file4" id="file4" accept="image/jpg,image/jpeg,image/png">
-                        <small class="text-muted">Format file yang di izinkan JPG, JPEG, dan PNG</small>
+                        <input type="file" class="form-control" name="file11" id="file11" accept="image/jpg,image/jpeg,image/png,image/gif">
+                        <small class="text-muted">Format file yang di izinkan JPG, JPEG, PNG, dan GIF</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="file12" class="col-sm-2 col-form-label">File Pendukung</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" name="file12" id="file12" accept="image/jpg,image/jpeg,image/png,image/gif">
+                        <small class="text-muted">Format file yang di izinkan JPG, JPEG, PNG, dan GIF</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="file13" class="col-sm-2 col-form-label">File Pendukung</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" name="file13" id="file13" accept="image/jpg,image/jpeg,image/png,image/gif">
+                        <small class="text-muted">Format file yang di izinkan JPG, JPEG, PNG, dan GIF</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="file14" class="col-sm-2 col-form-label">File Pendukung</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" name="file14" id="file14" accept="image/jpg,image/jpeg,image/png,image/gif">
+                        <small class="text-muted">Format file yang di izinkan JPG, JPEG, PNG, dan GIF</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="file15" class="col-sm-2 col-form-label">File Pendukung</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" name="file15" id="file15" accept="image/jpg,image/jpeg,image/png,image/gif">
+                        <small class="text-muted">Format file yang di izinkan JPG, JPEG, PNG, dan GIF</small>
                     </div>
                 </div>
                 <div class="form-group row">

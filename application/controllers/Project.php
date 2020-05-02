@@ -12,6 +12,7 @@ class Project extends CI_Controller {
         $data['css'] = 'detail';
         $data['project'] = $this->Projects_model->getProjectBySlug($slug);
         $data['projectMore'] = $this->Projects_model->getAllProjectsNotSlug($slug);
+        $data['file'] = $this->Projects_model->getFileBySlug($slug);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');
         $this->load->view('page/detail', $data);

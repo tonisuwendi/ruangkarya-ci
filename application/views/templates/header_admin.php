@@ -191,8 +191,8 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                    >Login sebagai Admin</span
+                  <span class="mr-2 d-lg-inline text-gray-600 small"
+                    >Admin</span
                   >
                 </a>
                 <!-- Dropdown - User Information -->

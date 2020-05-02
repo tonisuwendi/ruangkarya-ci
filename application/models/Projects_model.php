@@ -52,6 +52,11 @@ class Projects_model extends CI_Model {
         return $this->db->get("projects"); 
     }
 
+    public function getFileBySlug($slug){
+        $db = $this->db->get_where('projects', ['slug' => $slug])->row_array();
+        return $this->db->get_where('file', ['randId' => $db['file2']]);
+    }
+
     public function uploadFile($type){
         if($type == '5'){
             $config['upload_path'] = './assets/images/bg/';
@@ -60,6 +65,22 @@ class Projects_model extends CI_Model {
         }else{
             $config['upload_path'] = './assets/images/projects/';
         }
+        $config['allowed_types'] = 'jpg|png|jpeg|gif';
+        $config['max_size'] = '2048';
+        $config['file_name'] = round(microtime(true)*1000);
+
+        $this->load->library('upload', $config);
+        if($this->upload->do_upload('file'.$type)){
+            $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
+            return $return;
+        }else{
+            $return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
+            return $return;
+        }
+    }
+    
+    public function uploadFileOther($ranId, $type){
+        $config['upload_path'] = './assets/images/projects/';
         $config['allowed_types'] = 'jpg|png|jpeg|gif';
         $config['max_size'] = '2048';
         $config['file_name'] = round(microtime(true)*1000);
