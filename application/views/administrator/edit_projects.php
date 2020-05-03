@@ -1,3 +1,4 @@
+<?php echo $this->session->flashdata('success'); ?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 	<!-- Page Heading -->
@@ -75,6 +76,25 @@
                         <small class="text-danger"><?php echo form_error('description'); ?></small>
                     </div>
                 </div>
+                <?php if($file->num_rows() > 0){ ?>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">File Pendukung</label>
+                    <div class="col-sm-10">
+                        <?php foreach($file->result_array() as $f): ?>
+                            <img src="<?= base_url(); ?>assets/images/projects/<?= $f['name'] ?>" style="width: 200px">
+                            <a href="<?= base_url(); ?>administrator/project/file/<?= $f['id']; ?>" target="_blank" class="btn btn-success btn-sm">Ubah</a>
+                            <span style="cursor: pointer" onclick="btnDelete('<?= $f['id']; ?>','<?= $project['pId']; ?>')" class="btn btn-danger btn-sm">Hapus</span>
+                            <br><br>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <?php } ?>
+                <div class="form-group row">
+                    <label for="linkyt" class="col-sm-2 col-form-label">Video Pendukung</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="linkyt" id="linkyt" value="<?= $project['linkyt']; ?>">
+                    </div>
+                </div>
                 <div class="form-group row">
                     <div class="col-sm-10">
                     <button type="submit" class="btn btn-info btn-sm">Edit Projek</button>
@@ -85,3 +105,19 @@
 	</div>
 </div>
 <!-- /.container-fluid -->
+<script>
+function btnDelete(id,idP){
+	swal({
+		title: "Ingin menghapus file?",
+		text: "Apakah kamu yakin ingin menghapus file pendukung ini?",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+		})
+		.then((willDelete) => {
+		if (willDelete) {
+			document.location = `<?= base_url(); ?>administrator/project/delete-file/${id}/${idP}`
+		}
+	});
+}
+</script>

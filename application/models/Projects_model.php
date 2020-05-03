@@ -36,6 +36,11 @@ class Projects_model extends CI_Model {
         return $this->db->get()->row_array(); 
     }
 
+    public function getFileProjectById($id){
+        $db = $this->db->get_where('projects', ['id' => $id])->row_array();
+        return $this->db->get_where('file', ['randId' => $db['file2']]);
+    }
+
     public function getProjectBySlug($slug){
         $this->db->select("*, projects.name AS pName, projects.id AS pId");
         $this->db->from("projects");
@@ -130,6 +135,7 @@ class Projects_model extends CI_Model {
         $name = $this->input->post('name');
         $file = $nameFile;
         $description = $this->input->post('description');
+        $linkyt = $this->input->post('linkyt');
         function textToSlug($text='') {
             $text = trim($text);
             if (empty($text)) return '';
@@ -142,6 +148,7 @@ class Projects_model extends CI_Model {
         $data = [
             "name" => $name,
             "file" => $file,
+            "linkyt" => $linkyt,
             "description" => $description
         ];
         $this->db->where('id', $id);

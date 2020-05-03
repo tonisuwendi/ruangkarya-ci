@@ -347,6 +347,7 @@ class Administrator extends CI_Controller {
             $data['title'] = 'Edit Projek - Admin Panel';
             $data['categories'] = $this->Categories_model->getCategories();
             $data['project'] = $this->Projects_model->getProjectById($id);
+            $data['file'] = $this->Projects_model->getFileProjectById($id);
             $this->load->view('templates/header_admin', $data);
             $this->load->view('administrator/edit_projects', $data);
             $this->load->view('templates/footer_admin');
@@ -426,6 +427,44 @@ class Administrator extends CI_Controller {
                 redirect(base_url() . 'administrator/projects');
             }
         }
+    }
+
+    public function edit_file_project($id){
+        $data['title'] = 'Edit Projek - Admin Panel';
+        $data['file'] = $this->db->get_where('file', ['id' => $id])->row_array();
+        $this->load->view('templates/header_admin', $data);
+        $this->load->view('administrator/edit_file_project', $data);
+        $this->load->view('templates/footer_admin');
+    }
+
+    public function post_edit_file_project($id){
+        $randId = $this->input->post('randId');
+        $upload = $this->Projects_model->uploadFileOther($randId, '20');
+        $data = [
+            'name' => $upload['file']['file_name'],
+            'randId' => $randId
+        ];
+        $this->db->where('id', $id);
+        $this->db->update('file', $data);
+        $this->session->set_flashdata('success', "<script>
+        swal({
+        text: 'File Pendukung berhasil diubah',
+        icon: 'success'
+        });
+        </script>");
+        redirect(base_url() . 'administrator/project/file/'.$id);
+    }
+
+    public function delete_file_project($id,$idp){
+        $this->db->where('id', $id);
+        $this->db->delete('file');
+        $this->session->set_flashdata('success', "<script>
+            swal({
+            text: 'File pendukung berhasil dihapus',
+            icon: 'success'
+            });
+            </script>");
+        redirect(base_url() . 'administrator/project/'.$idp);
     }
 
     public function delete_project($id){
