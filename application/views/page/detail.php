@@ -29,7 +29,7 @@ $setting = $this->db->get('settings')->row_array();
             <img src="<?= base_url(); ?>assets/images/projects/<?= $project['file']; ?>" alt="<?= $project['pName']; ?>" class="clickFullScreenImg">
         <?php } ?>
         <p class="description">
-            <?= $project['description']; ?>
+            <?= nl2br($project['description']); ?>
         </p>
         <?php if($project['file2'] != ""){ ?>
             <?php foreach($file->result_array() as $f): ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Bulan Mei 2020 pada 06.22
+-- Waktu pembuatan: 03 Bulan Mei 2020 pada 09.16
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -66,6 +66,34 @@ INSERT INTO `categories` (`id`, `name`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `file`
+--
+
+CREATE TABLE `file` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `randId` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `file`
+--
+
+INSERT INTO `file` (`id`, `name`, `randId`) VALUES
+(44, '15884896240101.jpg', '162935348'),
+(45, '15884896240102.jpg', '162935348'),
+(46, '1588489762872.jpg', '2134095625'),
+(47, '15884897628721.jpg', '2134095625'),
+(48, '1588489869216.jpg', '194143595'),
+(49, '15884901003631.jpg', '8114528247'),
+(50, '15884901003632.jpg', '8114528247'),
+(51, '15884901003633.jpg', '8114528247'),
+(52, '1588490100363.png', '8114528247'),
+(53, '1588490100363.jpeg', '8114528247');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `projects`
 --
 
@@ -86,12 +114,10 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `name`, `category`, `file`, `description`, `file2`, `linkyt`, `slug`, `date_input`) VALUES
-(6, 'Mediadruckwerk Musterbox', 1, '1588244705220.jpg', 'Aliquam eget leo quis nunc faucibus tincidunt ac sed nisl. Donec id orci aliquet, tincidunt mauris ac, vestibulum mi. Pellentesque sed laoreet lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam molestie pharetra libero, porttitor tempus diam venenatis et. Nam eget felis a massa hendrerit rutrum. Integer maximus elit mauris, eu venenatis urna euismod vitae. Donec molestie, felis tempor dictum tempor, tellus justo interdum felis, et porttitor ante urna vitae leo. Fusce ut lectus vitae erat pulvinar posuere pellentesque vel urna. Nullam gravida felis vel ex sagittis, et euismod massa laoreet. Fusce pellentesque tellus nec leo placerat, nec accumsan dui consectetur.', '', '', 'mediadruckwerk-musterbox-1862846239', '2020-04-30 13:05:05'),
-(7, 'Passionfruit - Stickers', 1, '1588244768708.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin imperdiet nulla et magna viverra blandit. Nunc finibus massa a erat volutpat efficitur. Cras tempus, risus id aliquet dictum, dolor urna porttitor libero, sit amet viverra turpis arcu porta nulla. Donec euismod sodales orci, non porttitor massa lobortis vitae. Integer ultricies ipsum nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lacinia ex lectus, eu lacinia ligula maximus vitae. Curabitur ac posuere risus. Curabitur blandit mauris non luctus mattis. Curabitur vel velit sed augue vehicula aliquam. Ut eu elit a elit tempus sagittis.', '', '', 'passionfruit-stickers-1249523535', '2020-04-30 13:06:08'),
-(8, 'Meadowlark Cards', 1, '1588244846363.jpg', 'ras eu tristique lorem. Curabitur lacinia sapien vestibulum sem maximus commodo. Nullam ut tincidunt nisl. Quisque congue suscipit enim. In neque diam, auctor ac nisi in, porta ullamcorper lorem. Duis imperdiet risus mi, vel porttitor justo dapibus ac. Fusce et ultrices turpis, et luctus massa. Aenean quis massa commodo, cursus dui gravida, aliquam urna. Fusce id dolor et diam varius sollicitudin nec non augue. Nam porttitor porta quam, id dictum ligula malesuada vitae. Suspendisse fermentum est lorem, ultricies commodo dui dictum sit amet. Morbi ut maximus lectus. Vivamus et maximus turpis.', '', '', 'meadowlark-cards-1987524728', '2020-04-30 13:07:26'),
-(9, 'ZONA NYAMAN - NIKISUKA (Reggae SKA Version) | Fourtwnty', 3, 'mucs3GPVdgQ', 'Ut feugiat ligula non tortor interdum vulputate. Nam in quam fermentum, vehicula nulla non, lobortis tortor. Cras interdum nibh magna, sit amet ornare erat interdum et. Sed tincidunt augue sapien, vel lobortis augue lobortis ac. Vivamus vel dui vitae purus finibus tincidunt. Donec semper diam porta efficitur venenatis. Maecenas mollis tortor nibh, sed facilisis orci dictum vel. Sed purus neque, imperdiet sagittis hendrerit vel, molestie a urna. Morbi dictum, quam a feugiat commodo, nisi metus auctor metus, vitae dictum odio sem ac massa. Suspendisse a nisl at turpis lobortis pretium. Sed sed gravida nunc. Nam eu imperdiet augue. Aliquam sollicitudin semper magna, nec auctor nibh auctor id. Aliquam ac posuere tellus, elementum posuere elit.', '', '', 'zona-nyaman-nikisuka-reggae-ska-version-fourtwnty-884791652', '2020-04-30 13:09:49'),
-(10, 'Bender Indonesia', 2, '1588245113967.gif', 'Donec vitae sollicitudin dui, eu viverra justo. Integer nibh libero, mattis quis nunc scelerisque, sollicitudin placerat dui. Suspendisse condimentum velit ut est vestibulum commodo eu in magna. Curabitur tortor nulla, maximus sed eros eu, tempus dictum mi. Suspendisse ante nibh, posuere ac turpis ut, hendrerit consequat massa. Duis vel iaculis justo. Nam accumsan tincidunt vulputate. Sed cursus velit ac nisl porta mollis. Morbi id odio commodo, mattis lacus vel, vestibulum risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin eu ipsum sed libero hendrerit efficitur ac placerat dui. Praesent commodo nibh et tortor scelerisque vestibulum. Duis pulvinar, tortor sed faucibus tincidunt, leo ligula tincidunt nisi, commodo venenatis odio eros quis eros.', '', '', 'bender-indonesia-2010076573', '2020-04-30 13:11:53'),
-(11, 'Designsake\'s Small Batch Maple Syrup', 1, '1588245211085.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin imperdiet nulla et magna viverra blandit. Nunc finibus massa a erat volutpat efficitur. Cras tempus, risus id aliquet dictum, dolor urna porttitor libero, sit amet viverra turpis arcu porta nulla. Donec euismod sodales orci, non porttitor massa lobortis vitae. Integer ultricies ipsum nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lacinia ex lectus, eu lacinia ligula maximus vitae. Curabitur ac posuere risus. Curabitur blandit mauris non luctus mattis. Curabitur vel velit sed augue vehicula aliquam. Ut eu elit a elit tempus sagittis.\r\n\r\nAliquam eget leo quis nunc faucibus tincidunt ac sed nisl. Donec id orci aliquet, tincidunt mauris ac, vestibulum mi. Pellentesque sed laoreet lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam molestie pharetra libero, porttitor tempus diam venenatis et. Nam eget felis a massa hendrerit rutrum. Integer maximus elit mauris, eu venenatis urna euismod vitae. Donec molestie, felis tempor dictum tempor, tellus justo interdum felis, et porttitor ante urna vitae leo. Fusce ut lectus vitae erat pulvinar posuere pellentesque vel urna. Nullam gravida felis vel ex sagittis, et euismod massa laoreet. Fusce pellentesque tellus nec leo placerat, nec accumsan dui consectetur.', '', '', 'designsakes-small-batch-maple-syrup-1134821335', '2020-04-30 13:13:31');
+(56, 'Desain Bagus Banget Ini Loh, Kalian Harus Lihat Ini', 1, '1588489624010.jpg', '', '162935348', '', 'desain-bagus-banget-ini-loh-kalian-harus-lihat-ini-1575925898', '2020-05-03 14:07:04'),
+(57, 'Animasi Orang Berlari Lari Terus Berenang Terus Naik Sepeda Terus Nonton TV', 2, '1588489762872.gif', 'Diatas adalah gambar animasi\r\nDibawah saya sertakan foto foto wanita wkwk', '2134095625', '', 'animasi-orang-berlari-lari-terus-berenang-terus-naik-sepeda-terus-nonton-tv-445064499', '2020-05-03 14:09:23'),
+(58, 'Video Blackpink Nihh Buat Yang Pengin Nonton Hehe', 3, 'tOCUE8wRQYY', '', '194143595', '', 'video-blackpink-nihh-buat-yang-pengin-nonton-hehe-89297779', '2020-05-03 14:11:09'),
+(59, 'Desain Botol Obat Bisa Jadi Inspirasimu', 1, '1588490100363.jpg', 'Supaya kamu cepat sembuh, nih saya kasih foto-foto buat cuci mata', '8114528247', '', 'desain-botol-obat-bisa-jadi-inspirasimu-525501883', '2020-05-03 14:15:00');
 
 -- --------------------------------------------------------
 
@@ -132,6 +158,12 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `file`
+--
+ALTER TABLE `file`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `projects`
 --
 ALTER TABLE `projects`
@@ -160,10 +192,16 @@ ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT untuk tabel `file`
+--
+ALTER TABLE `file`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
+--
 -- AUTO_INCREMENT untuk tabel `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT untuk tabel `settings`

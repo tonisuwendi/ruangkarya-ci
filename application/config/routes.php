@@ -15,6 +15,7 @@ $route['administrator/project/(:num)'] = 'administrator/edit_projects/$1';
 $route['administrator/project/(:num)/delete'] = 'administrator/delete_project/$1';
 $route['administrator/project/delete-file/(:num)/(:num)'] = 'administrator/delete_file_project/$1/$2';
 $route['administrator/project/file/(:num)'] = 'administrator/edit_file_project/$1';
+$route['administrator/project/(:num)/add-file'] = 'administrator/add_file_project/$1';
 $route['administrator/setting/logo'] = 'administrator/logo_setting';
 $route['administrator/setting/favicon'] = 'administrator/favicon_setting';
 $route['administrator/setting/banner'] = 'administrator/banner_setting';

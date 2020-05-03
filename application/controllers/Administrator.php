@@ -455,6 +455,85 @@ class Administrator extends CI_Controller {
         redirect(base_url() . 'administrator/project/file/'.$id);
     }
 
+    public function add_file_project($id){
+        $data['title'] = 'Edit Projek - Admin Panel';
+        $data['project'] = $this->db->get_where('projects', ['id' => $id])->row_array();
+        $data['file'] = $this->db->get_where('file', ['randId' => $data['project']['file2']]);
+        $this->load->view('templates/header_admin', $data);
+        $this->load->view('administrator/add_file_project', $data);
+        $this->load->view('templates/footer_admin');
+    }
+
+    public function post_add_file_project($id){
+        $project = $this->db->get_where('projects', ['id' => $id])->row_array();
+        if($project['file2'] == ""){
+            $ranId = substr(rand(),0,4) . substr(rand(),4,6);
+            $this->db->set('file2',$ranId);
+            $this->db->where('id',$id);
+            $this->db->update('projects');
+        }else{
+            $ranId = $project['file2'];
+        }
+        $ranId = $project['file2'];
+        if($_FILES['file11']['name'] != "" || $_FILES['file12']['name'] != "" || $_FILES['file13']['name'] != "" || $_FILES['file14']['name'] != "" || $_FILES['file15']['name'] != "" ){
+            if($_FILES['file11']['name'] != ""){
+                $upload1 = $this->Projects_model->uploadFileOther($ranId, '11');
+                $data = [
+                    'name' => $upload1['file']['file_name'],
+                    'randId' => $ranId
+                ];
+                $this->db->insert('file', $data);
+            }
+            if($_FILES['file12']['name'] != ""){
+                $upload1 = $this->Projects_model->uploadFileOther($ranId, '12');
+                $data = [
+                    'name' => $upload1['file']['file_name'],
+                    'randId' => $ranId
+                ];
+                $this->db->insert('file', $data);
+            }
+            if($_FILES['file13']['name'] != ""){
+                $upload1 = $this->Projects_model->uploadFileOther($ranId, '13');
+                $data = [
+                    'name' => $upload1['file']['file_name'],
+                    'randId' => $ranId
+                ];
+                $this->db->insert('file', $data);
+            }
+            if($_FILES['file14']['name'] != ""){
+                $upload1 = $this->Projects_model->uploadFileOther($ranId, '14');
+                $data = [
+                    'name' => $upload1['file']['file_name'],
+                    'randId' => $ranId
+                ];
+                $this->db->insert('file', $data);
+            }
+            if($_FILES['file15']['name'] != ""){
+                $upload1 = $this->Projects_model->uploadFileOther($ranId, '15');
+                $data = [
+                    'name' => $upload1['file']['file_name'],
+                    'randId' => $ranId
+                ];
+                $this->db->insert('file', $data);
+            }
+            $this->session->set_flashdata('success', "<script>
+                swal({
+                text: 'File pendukung berhasil ditambah',
+                icon: 'succes'
+                });
+                </script>");
+                redirect(base_url() . 'administrator/project/'.$id);
+        }else{
+            $this->session->set_flashdata('success', "<script>
+                swal({
+                text: 'Belum ada file yang dipilih',
+                icon: 'warning'
+                });
+                </script>");
+                redirect(base_url() . 'administrator/project/'.$id.'/add-file');
+        }
+    }
+
     public function delete_file_project($id,$idp){
         $this->db->where('id', $id);
         $this->db->delete('file');

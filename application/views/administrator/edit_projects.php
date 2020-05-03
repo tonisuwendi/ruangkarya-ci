@@ -72,7 +72,7 @@
                 <div class="form-group row">
                     <label for="description" class="col-sm-2 col-form-label">Deskripsi</label>
                     <div class="col-sm-10">
-                        <textarea name="description" id="description" required class="form-control" rows="5"><?= $project['description']; ?></textarea>
+                        <textarea name="description" id="description" class="form-control" rows="5"><?= $project['description']; ?></textarea>
                         <small class="text-danger"><?php echo form_error('description'); ?></small>
                     </div>
                 </div>
@@ -88,6 +88,14 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
+                <?php } ?>
+                <?php if($file->num_rows() < 5){ ?>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                        <a href="<?= base_url(); ?>administrator/project/<?= $project['pId']; ?>/add-file" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah <?= 5 - $file->num_rows(); ?> file pendukung lagi</a>
+                        </div>
+                    </div>
                 <?php } ?>
                 <div class="form-group row">
                     <label for="linkyt" class="col-sm-2 col-form-label">Video Pendukung</label>
